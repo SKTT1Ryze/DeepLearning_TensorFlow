@@ -1,14 +1,16 @@
+#no bug
 # import pandas as pd
 import os
 import tensorflow as tf
-import tensorflow_core
-from tensorflow_core import keras
-from tensorflow_core.keras import layers
-from tensorflow_core.keras import Sequential
-from tensorflow_core.keras import optimizers, losses
+import tensorflow
+from tensorflow import keras
+from tensorflow.keras import layers
+from tensorflow.keras import Sequential
+from tensorflow.keras import optimizers, losses
 # import keras
 # from keras import optimizers, losses, metrics, layers
-from keras.datasets import cifar10
+from tensorflow.keras.datasets import cifar10
+
 # from keras.models import Sequential
 # from keras.layers import Dense, Dropout, Activation, Flatten
 # from keras.layers import Convolution2D, MaxPooling2D
@@ -102,7 +104,6 @@ def main():
                 out = cov_network(x)
                 out = tf.reshape(out, [-1, 512])
                 logits = fc_network(out)
-
                 y_onehot = tf.one_hot(y, depth=100)
                 loss = tf.losses.categorical_crossentropy(y_onehot, logits, from_logits=True)
                 loss = tf.reduce_mean(loss)

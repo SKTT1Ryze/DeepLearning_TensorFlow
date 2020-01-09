@@ -1,14 +1,15 @@
+#no bug
 # import pandas as pd
 import os
 import tensorflow as tf
-import tensorflow_core
-from tensorflow_core import keras
-from tensorflow_core.keras import layers
-from tensorflow_core.keras import Sequential
-from tensorflow_core.keras import optimizers, losses
+import tensorflow
+from tensorflow import keras
+from tensorflow.keras import layers
+from tensorflow.keras import Sequential
+from tensorflow.keras import optimizers, losses
 # import keras
 # from keras import optimizers, losses, metrics, layers
-from keras.datasets import cifar10
+from tensorflow.keras.datasets import cifar10
 
 # from keras.models import Sequential
 # from keras.layers import Dense, Dropout, Activation, Flatten
@@ -102,17 +103,17 @@ def preprocess(x, y):
 
 
 (x_train, y_train), (x_test, y_test) = cifar10.load_data()
-x_train = x_train[0:1000]
-x_test = x_test[0:200]
-y_train = y_train[0:1000]
-y_test = y_test[0:200]
+x_train = x_train[0:5000]
+x_test = x_test[0:1000]
+y_train = y_train[0:5000]
+y_test = y_test[0:1000]
 y_train = tf.squeeze(y_train, axis=1)
 y_test = tf.squeeze(y_test, axis=1)
 print(x_train.shape, y_train.shape, x_test.shape, y_test.shape)
 train_data = tf.data.Dataset.from_tensor_slices((x_train, y_train))
-train_data = train_data.shuffle(1000).map(preprocess).batch(10)
+train_data = train_data.shuffle(1000).map(preprocess).batch(50)
 test_data = tf.data.Dataset.from_tensor_slices((x_test, y_test))
-test_data = test_data.map(preprocess).batch(10)
+test_data = test_data.map(preprocess).batch(50)
 
 sample = next(iter(train_data))
 print('sample:', sample[0].shape, sample[1].shape,
@@ -123,7 +124,7 @@ def main():
     model = resnet18()
     model.build(input_shape=(None, 32, 32, 3))
     model.summary()
-    optimizer = optimizers.Adam(lr=1e-3)
+    optimizer = optimizers.Adam(lr=1e-4)
     for epoch in range(50):
         for step, (x, y) in enumerate(train_data):
             with tf.GradientTape() as tape:
@@ -133,7 +134,7 @@ def main():
                 loss = tf.reduce_mean(loss)
             grads = tape.gradient(loss, model.trainable_variables)
             optimizer.apply_gradients(zip(grads, model.trainable_variables))
-            if step % 10 == 0:
+            if step % 50 == 0:
                 print('epoch:', epoch, 'step:', step, 'loss:', float(loss))
         total_num = 0
         total_correct = 0

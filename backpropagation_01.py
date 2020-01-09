@@ -2,7 +2,6 @@ import numpy as np
 import tensorflow as tf
 import os
 import matplotlib.pyplot as plt
-import seaborn as sns
 from mpl_toolkits.mplot3d import Axes3D
 from sklearn.datasets import make_moons
 from sklearn.model_selection import train_test_split

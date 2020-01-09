@@ -1,14 +1,14 @@
+#no bug
 import numpy as np
 import pandas as pd
 import os, shutil
 import tensorflow as tf
-import tensorflow_core
-from tensorflow_core import keras
-from tensorflow_core.keras import layers
-from tensorflow_core.keras import Sequential
-from tensorflow_core.keras import optimizers, losses
+#from tensorflow import keras
+from tensorflow.keras import layers
+from tensorflow.keras import Sequential
+from tensorflow.keras import optimizers, losses
 # from tensorflow.examples.tutorials.mnist import input_data
-from keras.preprocessing.image import ImageDataGenerator
+from tensorflow.python.keras.preprocessing.image import ImageDataGenerator
 from sklearn.model_selection import train_test_split
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'

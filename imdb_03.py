@@ -1,3 +1,4 @@
+#no bug
 # import pandas as pd
 import os
 import matplotlib.pyplot  as plt
@@ -9,7 +10,7 @@ from tensorflow.keras import Sequential
 from tensorflow.keras import optimizers, losses
 # import keras
 # from keras import optimizers, losses, metrics, layers
-from keras.datasets import imdb
+from tensorflow.keras.datasets import imdb
 
 # tf.__version__
 # from keras.models import Sequential

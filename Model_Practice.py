@@ -29,10 +29,10 @@ network = Sequential([layers.Dense(12, activation='relu', input_dim=2),
                       layers.Dense(2, activation='sigmoid')])
 network.build(input_shape=(None, 2))
 network.summary()
-network.compile(optimizer=optimizers.Adam(lr=0.1), loss='sparse_categorical_crossentropy', metrics=['accuracy'])
+network.compile(optimizer=optimizers.Adam(lr=0.01), loss='sparse_categorical_crossentropy', metrics=['accuracy'])
 
 # 返回训练信息保存在 history 中
-history = network.fit(X_train, y_train, epochs=50, validation_data=(X_test, y_test), validation_freq=5)
+history = network.fit(X_train, y_train, epochs=100, validation_data=(X_test, y_test), validation_freq=5)
 # history = network.fit(X_train,Y_train)
 # print(history)
 
